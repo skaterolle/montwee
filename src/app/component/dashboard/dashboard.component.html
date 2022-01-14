@@ -1,0 +1,129 @@
+<p class="inline margin_n">Colección en la que se va a realizar la consulta:</p>
+<Select id="selecciona">
+    <ng-container *ngFor="let opt of collections; ">
+        <option value="{{opt}}">{{opt}}</option>
+    </ng-container>
+</Select>
+
+<div class="flex contenido">
+    <div class="card fechas flex_son">
+        <div class="card-body">
+            <p class="inline bold">Decha de inicio: </p>
+            <p class="inline ">{{dates[0].first_date}} </p>
+            <br>
+            <p class="inline bold">Decha de Finalización: </p>
+            <p class="inline">{{dates[0].last_date}} </p>
+        </div>
+    </div>
+    <div class="card flex_son documentos">
+        <div class="card-body">
+            <p class="inline bold">Total de Documentos: </p>
+            <p class="inline">{{docs}} </p>
+        </div>
+    </div>
+    <div class="card flex_son verificados">
+        <div class="card-body">
+            <p class="inline bold">Total de Verificados: </p>
+            <p class="inline">{{verificados[0].suma}} </p>
+        </div>
+    </div>
+    <div class="break"></div>
+    <div class="card flex_son_2 mostrt">
+        <div class="card-body">
+            <h4>Tweet Más RT: {{mostrt[0].suma}} veces </h4>
+            <div class="flex">
+                <img class="rounded float_left margin_xx" src="{{mostrt[0].user_img_url}}"
+                    alt="{{mostrt[0].User_name}} profile image">
+                <div class="flex_son">
+                    <h5 class="card-title margin_user">{{mostrt[0].User_name}}</h5>
+                </div>
+            </div>
+            <p class="card-text">{{mostrt[0].texto}}</p>
+        </div>
+    </div>
+    <div class="card flex_son_2 morert">
+        <div class="card-body">
+            <h4>5 Personas que más han retweeteado:</h4>
+            <div>
+                <p class="inline bold">{{morert[0].user_name}}: </p>
+                <p class="inline"> {{morert[0].suma}} </p>
+            </div>
+            <div>
+                <p class="inline bold">{{morert[1].user_name}}:</p>
+                <p class="inline"> {{morert[1].suma}}</p>
+            </div>
+            <div>
+                <p class="inline bold">{{morert[2].user_name}}:</p>
+                <p class="inline"> {{morert[2].suma}}</p>
+            </div>
+            <div>
+                <p class="inline bold">{{morert[3].user_name}}:</p>
+                <p class="inline"> {{morert[3].suma}}</p>
+            </div>
+            <div>
+                <p class="inline bold">{{morert[4].user_name}}:</p>
+                <p class="inline"> {{morert[4].suma}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="break"></div>
+    <div class="card flex_son hashtags">
+        <div class="card-body">
+            <div>
+                <p class="inline bold">#{{hashtags[0]._id}}: </p>
+                <p class="inline"> {{hashtags[0].suma}} </p>
+            </div>
+            <div>
+                <p class="inline bold">#{{hashtags[1]._id}}: </p>
+                <p class="inline"> {{hashtags[1].suma}} </p>
+            </div>
+            <div>
+                <p class="inline bold">#{{hashtags[2]._id}}: </p>
+                <p class="inline"> {{hashtags[2].suma}} </p>
+            </div>
+            <div>
+                <p class="inline bold">#{{hashtags[3]._id}}: </p>
+                <p class="inline"> {{hashtags[3].suma}} </p>
+            </div>
+            <div>
+                <p class="inline bold">#{{hashtags[4]._id}}: </p>
+                <p class="inline"> {{hashtags[4].suma}} </p>
+            </div>
+        </div>
+    </div>
+    <div class="card flex_son_2 mencionados">
+        <div class="card-body">
+            <ng-container *ngFor="let use of mencionados">
+                <div>
+                    <p class="inline">Usuario: </p>
+                    <p class="inline bold">{{use.nombre}} </p>
+                    <p class="inline">mencionado {{use.suma}} veces</p>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="break"></div>
+    <div class="card flex_son_2 urls">
+        <div class="card-body">
+            <ng-container *ngFor="let mencionado of urls;">
+                <div>
+                    <a href="{{mencionado.url}}" class="inline" target="_blank">{{mencionado._id}} </a>
+                    <p class="inline"> Url mencionada {{mencionado.suma}} veces </p>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="card flex_son idiomas">
+        <div class="card-body">
+            <ng-container *ngFor="let lang of idiomas;">
+                <div>
+                    <p class="inline">{{lang.suma}} tweets en </p>
+                    <p class="inline bold">{{lang._id}} </p>
+                </div>
+            </ng-container>
+            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType">
+            </canvas>
+        </div>
+    </div>
+</div>
+<button (click)="nuevaBusqueda()">Enter</button>

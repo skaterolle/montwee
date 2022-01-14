@@ -1,0 +1,147 @@
+<p class="inline margin_n">Colección en la que se va a realizar la consulta:</p>
+<Select id="selecciona">
+    <ng-container *ngFor="let opt of collections; ">
+        <option value="{{opt}}">{{opt}}</option>
+    </ng-container>
+</Select>
+<form class="flex">
+    <div class="flex_son">
+        <div class="texto margin_mx form-group">
+            <input type="text" id="texto" class="text margin_n" placeholder="Texto a buscar">
+        </div>
+
+        <div class="usuario margin_mx">
+            <input type="text" id="user" class="text margin_n" placeholder="Nombre de Usuario">
+        </div>
+
+        <div class="hashtag margin_mx">
+            <input type="text" id="hashtag" class="margin_n" placeholder="#Hashtags">
+            <p class="margin_n">Buscar por todos los Hashtags: </p>
+            <label class=" switch margin_n">
+                <input id="busca_hashtag" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="fechas margin_mx flex_son">
+        <div class="desde margin_n">
+            <p class="inline">Desde: </p>
+            <input id="desde" type="date">
+        </div>
+        <div class="hasta margin_n">
+            <p class="inline">Hasta: </p>
+            <input id="hasta" type="date">
+        </div>
+    </div>
+
+    <!-- <div class="menciones margin_mx">
+        <p class="inline margin_n">Numero de menciones: </p>
+        <input type="number" min="0" id="menciones" class="inline margin_n">
+    </div> -->
+
+    <div class="flex_son">
+        <div class="verificado margin_mx">
+            <p class="inline margin_n">Usuario Verificado: </p>
+            <label class=" switch margin_n">
+                <input id="verificado" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="geo margin_mx">
+            <p class="inline margin_n">Muestra Geolocalización: </p>
+            <label class=" switch margin_n">
+                <input id="geo" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="descartar margin_mx">
+            <p class="inline margin_n">Descartar RT: </p>
+            <label class="switch margin_n">
+                <input id="descartar" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="ordenart margin_mx">
+            <p class="inline margin_n">Ordena por Followers: </p>
+            <label class="switch margin_n">
+                <input id="ordenart" type="checkbox" (click)="change()">
+                <span class="slider round"></span>
+            </label>
+            <p class="inline margin_n">{{ordena}}</p>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-success margin_xx" (click)="find()">Buscar</button>
+</form>
+
+<div class="Nueva_Collection" *ngIf="tweets">
+    Nombre de la nueva collección:
+    <input id="nueva" type="text">
+    <button class="btn btn-danger" (click)="Guardar_Colleccion()">Guardar</button>
+</div>
+
+<div class="card" *ngFor="let tweet of tweets; let i=index">
+    <div class="card-body ">
+        <div class="flex">
+            <img class="rounded float_left margin_xx" src="{{tweet.user.profile_image_url}}"
+                alt="{{tweet.name}} profile image">
+            <div class="flex_son">
+                <h3 class="card-title margin_user" (click)="show(i)">{{tweet.user.screen_name}}</h3>
+                <p>user: {{tweet.user.name}} </p>
+            </div>
+        </div>
+        <p class="card-text">{{tweet.text}}</p>
+        <div *ngIf="tweet.entities.hashtags">
+            <p class="card-text inline" *ngFor="let hash of tweet.entities.hashtags; let j=index">
+                #{{tweet.entities.hashtags[j].text}} </p>
+        </div>
+        <br>
+        <div class="creado">
+            Tweet Creado: {{tweet.created_at}}
+        </div>
+        <div class="center flex" id="{{i}}">
+            <div class="comparte card flex_son">
+                <div class="user_info">
+                    <h2>Información Extra del usuario</h2>
+                    <div class="descripcion">
+                        <p class="inline bold">Descripción: </p>
+                        <p class="inline">{{tweet.user.description}}</p>
+                    </div>
+                    <div class="verificado">
+                        <p class="inline bold">Verificado: </p>
+                        <p class="inline"> {{tweet.user.verified}} </p>
+                    </div>
+                    <br>
+                    <div class="creado">
+                        Cuenta creada: {{tweet.user.created_at}}
+                    </div>
+                    <br>
+
+                    <div class="left ">Followers: {{tweet.user.followers_count}}</div>
+                    <div class="left ">Friends: {{tweet.user.friends_count}}</div>
+                </div>
+            </div>
+            <div class="comparte card flex_son">
+                <div class="">
+                    <h2>Información de Geolocalización</h2>
+                    <div class="left" *ngIf="tweet.geo">
+                        <div class="latitude">Longitude: {{tweet.geo.coordinates[0]}} </div>
+                        <div class="longitude">Latitud: {{tweet.geo.coordinates[1]}} </div>
+                    </div>
+                    <div class="place" *ngIf="tweet.place">
+                        Lugar desde el que se escribió: {{tweet.place.name}},{{tweet.place.country}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p class="inline bold">Source: </p>
+            <p class="inline" [innerHTML]="tweet.source"></p>
+            <p class="inline"> -> {{tweet.source}}</p>
+        </div>
+    </div>
+</div>

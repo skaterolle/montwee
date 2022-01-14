@@ -1,24 +1,20 @@
-.documentos,
-.lectura {
-  margin: 15px;
+.comparte {
+  margin: 5px;
+  padding: 15px;
+  vertical-align: top;
 }
 
-.margin {
-  margin: 10px;
+.center {
+  margin: auto;
+  padding: auto;
 }
 
-.right {
-  justify-self: end;
-  align-self: center;
-}
-
-.menu {
+.flex {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
 }
-.left {
-  float: left;
+
+.flex_son {
+  flex: 1;
 }
 
 // Transformar los checkbox en switchs
@@ -27,7 +23,7 @@
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 29px;
+  height: 24px; // Cambiar para tamaño de switch
 }
 
 /* Hide default HTML checkbox */
@@ -53,8 +49,8 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 21px;
-  width: 21px;
+  height: 16px; // Cambiar para cambiar tamaño de bola
+  width: 16px; // Same
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -71,9 +67,10 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(29px);
-  -ms-transform: translateX(29px);
-  transform: translateX(29px);
+  // Cambiar para reducir o ampliar tamaño
+  -webkit-transform: translateX(36px);
+  -ms-transform: translateX(36px);
+  transform: translateX(36px);
 }
 
 /* Rounded sliders */

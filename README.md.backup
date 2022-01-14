@@ -12,17 +12,10 @@ En caso de correrlo en un servidor, en el archivo app.py, en el run habrá que h
 
 ## Dependencias
 
-Las dependencias necesarias para hacer funcionar el servidor de flask serán las siguientes:
+Las dependencias necesarias para hacer funcionar
 
-- flask
-- flask_cors
-- pymongo
-- pyyaml
-- dnspython
-
-# MongoDB
-
-Para que la aplicación funcione, el servidor de MongoDB debe de disponer de una Base de Datos llamada Twitter con una colleción llamada tweets donde se guarde toda la información, sino no funcionará. Además habrá que crear un indice de tipo texto. En mi caso, este indice lo creé de la siguiente manera: `db.tweets.createIndex({ text: "text", "user.name": "text", "user.screen_name": "text", "user.description": "text", "place.name": "text", "place.full_name": "text", "place.country": "text", "place.country_name": "text" },{ name: "TextIndex", default_language:"spanish" })`
+-Flask
+- 
 
 ## Development server
 

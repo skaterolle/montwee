@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.box {
+  border: 1px solid black;
+}
+
+.inline {
+  display: inline;
+}
+
+.margin_user {
+  margin: -5px;
+  margin-top: 13px;
+}
+.margin_mx {
+  margin: 5px;
+}
+
+.margin_n {
+  margin: 10px;
+}
+
+.margin_xx {
+  margin: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+.imagen_mx {
+  width: 15px;
+}
+
+.bold {
+  font-weight: bold;
+}
+// Ocultar las flechas
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

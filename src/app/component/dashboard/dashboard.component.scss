@@ -1,0 +1,17 @@
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex_son {
+  flex: 1;
+}
+
+.flex_son_2 {
+  flex: 2;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
