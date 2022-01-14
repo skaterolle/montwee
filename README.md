@@ -34,6 +34,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
+Si se va a realizar con electron habrá que hacerlo de la siguiente manera con electron packager`npx electron-packager . Montwee --all `
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests

@@ -1,9 +1,16 @@
-<p class="inline margin_n">Colección en la que se va a realizar la consulta:</p>
-<Select id="selecciona">
-    <ng-container *ngFor="let opt of collections; ">
-        <option value="{{opt}}">{{opt}}</option>
-    </ng-container>
-</Select>
+<div class="flex">
+    <div class="flex_son">
+        <button class="btn btn-success" (click)="reload()">Reload</button>
+    </div>
+    <div class="flex_son">
+        <p class="inline margin_n">Colección en la que se va a realizar la consulta:</p>
+        <Select id="selecciona">
+            <ng-container *ngFor="let opt of collections; ">
+                <option value="{{opt}}">{{opt}}</option>
+            </ng-container>
+        </Select>
+    </div>
+</div>
 
 <div class="flex contenido">
     <div class="card fechas flex_son">

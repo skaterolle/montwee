@@ -90,6 +90,8 @@ export class DashboardComponent implements OnInit {
   }
 
   consigueMorert(){
+    this.pieLabelsrt = [];
+    this.pieDatart = [];
     this.tweetService.get5morert(this.colleccion).subscribe(response => {
       this.morert = response;
       this.morert.forEach((item: any) =>{
