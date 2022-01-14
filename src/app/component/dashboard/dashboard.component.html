@@ -43,52 +43,30 @@
     </div>
     <div class="card flex_son_2 morert">
         <div class="card-body">
-            <h4>5 Personas que más han retweeteado:</h4>
-            <div>
-                <p class="inline bold">{{morert[0].user_name}}: </p>
-                <p class="inline"> {{morert[0].suma}} </p>
+            <h4 (click)="toggleRT()" class="pointer text-align">5 Personas que más han retweeteado:</h4>
+            <div id="LabelRT" class="hidden">
+                <ng-container *ngFor="let mor of morert">
+                    <div>
+                        <p class="inline bold">{{mor.user_name}}: </p>
+                        <p class="inline"> {{mor.suma}} </p>
+                    </div>
+                </ng-container>
             </div>
-            <div>
-                <p class="inline bold">{{morert[1].user_name}}:</p>
-                <p class="inline"> {{morert[1].suma}}</p>
-            </div>
-            <div>
-                <p class="inline bold">{{morert[2].user_name}}:</p>
-                <p class="inline"> {{morert[2].suma}}</p>
-            </div>
-            <div>
-                <p class="inline bold">{{morert[3].user_name}}:</p>
-                <p class="inline"> {{morert[3].suma}}</p>
-            </div>
-            <div>
-                <p class="inline bold">{{morert[4].user_name}}:</p>
-                <p class="inline"> {{morert[4].suma}}</p>
+            <div class="" id="CanvasRT">
+                <canvas baseChart [data]="pieDatart" [labels]="pieLabelsrt" [chartType]="pieChartType">
+                </canvas>
             </div>
         </div>
     </div>
     <div class="break"></div>
     <div class="card flex_son hashtags">
         <div class="card-body">
-            <div>
-                <p class="inline bold">#{{hashtags[0]._id}}: </p>
-                <p class="inline"> {{hashtags[0].suma}} </p>
-            </div>
-            <div>
-                <p class="inline bold">#{{hashtags[1]._id}}: </p>
-                <p class="inline"> {{hashtags[1].suma}} </p>
-            </div>
-            <div>
-                <p class="inline bold">#{{hashtags[2]._id}}: </p>
-                <p class="inline"> {{hashtags[2].suma}} </p>
-            </div>
-            <div>
-                <p class="inline bold">#{{hashtags[3]._id}}: </p>
-                <p class="inline"> {{hashtags[3].suma}} </p>
-            </div>
-            <div>
-                <p class="inline bold">#{{hashtags[4]._id}}: </p>
-                <p class="inline"> {{hashtags[4].suma}} </p>
-            </div>
+            <ng-container *ngFor="let hash of hashtags">
+                <div>
+                    <p class="inline bold">#{{hash._id}}: </p>
+                    <p class="inline"> {{hash.suma}} </p>
+                </div>
+            </ng-container>
         </div>
     </div>
     <div class="card flex_son_2 mencionados">
@@ -115,15 +93,18 @@
     </div>
     <div class="card flex_son idiomas">
         <div class="card-body">
-            <ng-container *ngFor="let lang of idiomas;">
-                <div>
-                    <p class="inline">{{lang.suma}} tweets en </p>
-                    <p class="inline bold">{{lang._id}} </p>
-                </div>
-            </ng-container>
-            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType">
+            <h4 class="pointer text-align" (click)="toggleLang()">5 Idiomas más usados:</h4>
+            <div id="LabelLang" class="hidden">
+                <ng-container *ngFor="let lang of idiomas;">
+                    <div>
+                        <p class="inline">{{lang.suma}} tweets en </p>
+                        <p class="inline bold">{{lang._id}} </p>
+                    </div>
+                </ng-container>
+            </div>
+            <div id="CanvasLang">
+                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType">
+                </canvas>
+            </div>
+            ype]="pieChartType">
             </canvas>
-        </div>
-    </div>
-</div>
-<button (click)="nuevaBusqueda()">Enter</button>

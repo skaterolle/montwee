@@ -8,12 +8,11 @@ import { Observable, Subject } from 'rxjs';
 export class TweetService {
 
   //En caso de 
-  private online = 'http://129.151.230.102:5000';
-  private local = 'http://192.168.1.139:5000';
+  private online = '';
+  private local = '';
 
   private baseUrl = '0'
-  //private baseUrl = 'http://192.168.1.139:5000'
-  //private baseUrl = 'http://129.151.230.102:5000'
+
   private reload = new Subject();
   public changeReload = this.reload.asObservable();
 

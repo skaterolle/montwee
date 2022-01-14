@@ -25,10 +25,13 @@ export class DashboardComponent implements OnInit {
   public urls: any;
   public idiomas: any;
   
-  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  public pieChartData: SingleDataSet = [300, 500, 100];
+  public pieChartLabels: Label[] = [];
+  public pieChartData: SingleDataSet = [];
   public pieChartType: ChartType = 'pie';
 
+  public pieLabelsrt: Label[] = [];
+  public pieDatart: SingleDataSet = [];
+  
   constructor(
     private tweetService: TweetService, 
   ) {   }
@@ -89,6 +92,11 @@ export class DashboardComponent implements OnInit {
   consigueMorert(){
     this.tweetService.get5morert(this.colleccion).subscribe(response => {
       this.morert = response;
+      this.morert.forEach((item: any) =>{
+        //console.log(item._id);
+        this.pieLabelsrt.push(item.user_name)
+        this.pieDatart.push(item.suma)
+      });
     })
   }
 
@@ -121,9 +129,16 @@ export class DashboardComponent implements OnInit {
   }
 
   consigueIdiomas(){
+    this.pieChartLabels = [];
+    this.pieChartData = [];
     this.tweetService.getIdiomas(this.colleccion).subscribe(response => {
       this.idiomas = response;
-      console.log(response);
+      //console.log("Idiomas: ",Object.keys(this.idiomas).length );
+      this.idiomas.forEach((item: any) =>{
+        //console.log(item._id);
+        this.pieChartLabels.push(item._id)
+        this.pieChartData.push(item.suma)
+      });
       
     })
   }
@@ -132,5 +147,15 @@ export class DashboardComponent implements OnInit {
   nuevaBusqueda(){
     this.getselec();
     this.reload();
+  }
+
+  toggleRT(){
+    document.getElementById("LabelRT")?.classList.toggle("hidden");
+    document.getElementById("CanvasRT")?.classList.toggle("hidden");
+  }
+
+  toggleLang(){
+    document.getElementById("LabelLang")?.classList.toggle("hidden");
+    document.getElementById("CanvasLang")?.classList.toggle("hidden");
   }
 }
