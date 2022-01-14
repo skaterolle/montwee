@@ -9,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class ConsultasComponent implements OnInit {
 
   public ordena: string = "ASC";
-  public tweets: any;
+  public tweets: any[];
   public collections: any;
+  public total: any;
 
   constructor(
     private tweetService: TweetService,
@@ -120,6 +121,7 @@ export class ConsultasComponent implements OnInit {
     this.tweetService.find(colleccion ,texto, orden, descartar_rt, desde, hasta, usuario, hashtag, busca_hashtag, menciones, geo, verificado).subscribe(responde => {
       this.tweets = responde;
       console.log(this.tweets);
+      this.total = Object.keys(this.tweets).length
     })
 
   }

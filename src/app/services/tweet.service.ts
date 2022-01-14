@@ -12,7 +12,7 @@ export class TweetService {
   private local = '';
 
   private baseUrl = '0'
-
+  
   private reload = new Subject();
   public changeReload = this.reload.asObservable();
 

@@ -83,8 +83,11 @@
     <input id="nueva" type="text">
     <button class="btn btn-danger" (click)="Guardar_Colleccion()">Guardar</button>
 </div>
-
-<div class="card" *ngFor="let tweet of tweets; let i=index">
+<div *ngIf="tweets">
+    <p class="inline bold">Documentos Totales: </p>
+    <p class="inline">{{total}} </p>
+</div>
+<div class="card" *ngFor="let tweet of tweets | slice:0:20; let i=index">
     <div class="card-body ">
         <div class="flex">
             <img class="rounded float_left margin_xx" src="{{tweet.user.profile_image_url}}"

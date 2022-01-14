@@ -1,0 +1,137 @@
+from flask import Flask, render_template, request, jsonify
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+from flask_cors import CORS
+import yaml
+
+app = Flask(__name__)
+config = yaml.safe_load(open('database.yaml'))
+client = MongoClient(config['uri'])
+# db = client.lin_flask
+db = client['Twitter']
+CORS(app)
+
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  return response
+  
+@app.route('/')
+def index():
+    return render_template('home.html')
+
+@app.route('/tweets', methods=['POST', 'GET']) # methods=['POST', 'GET']
+def data():
+    
+    # POST a data to database
+    # if request.method == 'POST':
+        # body = request.json
+        # firstName = body['firstName']
+        # lastName = body['lastName']
+        # emailId = body['emailId'] 
+        # # db.users.insert_one({
+        # db['users'].insert_one({
+            # "firstName": firstName,
+            # "lastName": lastName,
+            # "emailId":emailId
+        # })
+        # return jsonify({
+            # 'status': 'Data is posted to MongoDB!',
+            # 'firstName': firstName,
+            # 'lastName': lastName,
+            # 'emailId':emailId
+        # })
+    
+    # GET all data from database
+    if request.method == 'GET' or request.method == 'POST':
+        min = 0
+        max = 20
+        receiv = request.json
+        if receiv:
+            min = receiv['min']
+            max = receiv['max']
+        allData = db['tweets'].find()
+        dataJson = []
+        # for data in allData: # Devuelve todos los tweets
+            # id = data['_id']
+            # name = data['user']['screen_name']
+            # followers = data['user']['followers_count']
+            # tweet = data['text']
+            # dataDict = {
+                # 'id': str(id),
+                # 'Name': name,
+                # 'Followers': followers,
+                # 'Tweet': tweet
+            # }
+            # dataJson.append(dataDict)
+        data = allData
+        for x in range(min, max): # Devuelve todos los tweets pero podemos definir un rango, tarda menos que el anterior
+            id = data[x]['_id']
+            name = data[x]['user']['screen_name']
+            followers = data[x]['user']['followers_count']
+            tweet = data[x]['text']
+            dataDict = {
+                'id': str(id),
+                'Name': name,
+                'Followers': followers,
+                'Tweet': tweet
+            }
+            dataJson.append(dataDict)
+        
+        #print(dataJson)
+        print("Devuelvo todos los tweets.")
+        print("min: ", min, " max: ", max)
+        return jsonify(dataJson)
+        #return dataJson
+
+@app.route('/tweets/<string:id>', methods=['GET', 'DELETE', 'PUT'])
+def onedata(id):
+
+    # GET a specific data by id
+    if request.method == 'GET':
+        data = db['users'].find_one({'_id': ObjectId(id)})
+        id = data['_id']
+        firstName = data['firstName']
+        lastName = data['lastName']
+        emailId = data['emailId']
+        dataDict = {
+            'id': str(id),
+            'firstName': firstName,
+            'lastName': lastName,
+            'emailId':emailId
+        }
+        print(dataDict)
+        return jsonify(dataDict)
+        
+    # DELETE a data
+    if request.method == 'DELETE':
+        db['users'].delete_many({'_id': ObjectId(id)})
+        print('\n # Deletion successful # \n')
+        return jsonify({'status': 'Data id: ' + id + ' is deleted!'})
+
+    # UPDATE a data by id
+    if request.method == 'PUT':
+        body = request.json
+        firstName = body['firstName']
+        lastName = body['lastName']
+        emailId = body['emailId']
+
+        db['users'].update_one(
+            {'_id': ObjectId(id)},
+            {
+                "$set": {
+                    "firstName":firstName,
+                    "lastName":lastName,
+                    "emailId": emailId
+                }
+            }
+        )
+
+        print('\n # Update successful # \n')
+        return jsonify({'status': 'Data id: ' + id + ' is updated!'})
+
+if __name__ == '__main__':
+    app.debug = True
+    app.run(host='192.168.1.139')
