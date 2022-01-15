@@ -106,7 +106,7 @@ def data():
             min = receiv['min']
             max = receiv['max']
             colleccion = receiv['colleccion']
-        allData = db['tweets'].find()
+        allData = db[colleccion].find()
         dataJson = []
         # for data in allData: # Devuelve todos los tweets
         # id = data['_id']
@@ -637,5 +637,6 @@ def onedata(id):
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='192.168.1.139')  # Casa - Localhost
+    # Casa - Localhost
+    app.run(host='TU DIRECCIÓN LOCAL, NO VALE LOCALHOST O 127.0.0.1')
     # app.run(host='0.0.0.0') # Servidor

@@ -1,13 +1,17 @@
-<div class="botonera">
-    <button (click)="anterior(actual)" *ngIf="actual != 0">Anterior</button>
-    <button (click)="reloadData()" *ngIf="actual != 0">{{0}}</button>
-    <button (click)="siguientes(actual+1)" *ngIf="actual != total-1">{{actual+1}}</button>
-    <button (click)="siguientes(actual+2)" *ngIf="actual != total-1">{{actual+2}}</button>
-    <button (click)="siguientes(actual+3)" *ngIf="actual != total-1">{{actual+3}}</button>
+<div class="botonera margin_n">
+    <button class="btn btn-info margin_mx " (click)="anterior(actual)" *ngIf="actual != 0">Anterior</button>
+    <button class="btn btn-info margin_mx " (click)="reloadData()" *ngIf="actual != 0">{{0}}</button>
+    <button class="btn btn-info margin_mx" (click)="siguientes(actual+1)"
+        *ngIf="actual != total-1">{{actual+1}}</button>
+    <button class="btn btn-info margin_mx" (click)="siguientes(actual+2)"
+        *ngIf="actual != total-1">{{actual+2}}</button>
+    <button class="btn btn-info margin_mx" (click)="siguientes(actual+3)"
+        *ngIf="actual != total-1">{{actual+3}}</button>
     . . .
-    <button (click)="siguientes(actual+10)" *ngIf="(actual+10) < total-1">{{actual+10}}</button>
-    <button (click)="siguientes(total-1)" *ngIf="actual != total-1">{{total-1}}</button>
-    <button (click)="siguientes(actual+1)" *ngIf="actual != total-1">Siguiente</button>
+    <button class="btn btn-info margin_mx" (click)="siguientes(actual+10)"
+        *ngIf="(actual+10) < total-1">{{actual+10}}</button>
+    <button class="btn btn-info margin_mx" (click)="siguientes(total-1)" *ngIf="actual != total-1">{{total-1}}</button>
+    <button class="btn btn-info margin_mx" (click)="siguientes(actual+1)" *ngIf="actual != total-1">Siguiente</button>
     <div class="right inline">
         <p class="inline margin_n">Colección en la que se va a realizar la consulta:</p>
         <Select id="selecciona">
@@ -15,9 +19,10 @@
                 <option value="{{opt}}">{{opt}}</option>
             </ng-container>
         </Select>
+        <button class="btn btn-success margin_n" (click)="reloadData()">Reload</button>
     </div>
 </div>
-<div class="card" *ngFor="let tweet of tweets; let i=index">
+<div class="card margin_n" *ngFor="let tweet of tweets; let i=index">
     <div class="card-body ">
         <div class="flex">
             <img class="rounded float_left margin_xx" src="{{tweet.user.profile_image_url}}"

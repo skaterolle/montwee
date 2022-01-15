@@ -24,12 +24,16 @@ export class TweetListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.reloadData();    
+    this.actual = 0;
+    //console.log("Reload");
+    this.tweetService.getTweetsList("tweets",0, 20).subscribe(response => {
+      this.tweets = response;
+      //console.log(this.tweets);
+    });     
     this.Count_Documents();
     this.consigueCollection();
     this.tweetService.changeReload.subscribe(()=>{
       this.reloadData();
-      this.Count_Documents();
       this.consigueCollection();
     });
   }
@@ -76,6 +80,7 @@ export class TweetListComponent implements OnInit {
       this.tweets = response;
       //console.log(this.tweets);
     });    
+    this.consigueDocumentos();
   }
 
   Count_Documents(){
@@ -83,6 +88,14 @@ export class TweetListComponent implements OnInit {
       this.documents = response;
       this.total = Math.trunc(response/20);
     });
+  }
+
+  consigueDocumentos(){
+    var colleccion = (<HTMLSelectElement>document.getElementById("selecciona")).value;
+    this.tweetService.getdocumentscountcollection(colleccion).subscribe( response => {
+      this.documents = response;
+      this.total = Math.trunc(response/20);
+    })
   }
 
 }
