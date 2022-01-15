@@ -24,6 +24,20 @@ Las dependencias necesarias para hacer funcionar el servidor de flask serán las
 
 Para que la aplicación funcione, el servidor de MongoDB debe de disponer de una Base de Datos llamada Twitter con una colleción llamada tweets donde se guarde toda la información, sino no funcionará. Además habrá que crear un indice de tipo texto. En mi caso, este indice lo creé de la siguiente manera: `db.tweets.createIndex({ text: "text", "user.name": "text", "user.screen_name": "text", "user.description": "text", "place.name": "text", "place.full_name": "text", "place.country": "text", "place.country_name": "text" },{ name: "TextIndex", default_language:"spanish" })`
 
+Para que funcione el programa, la BD debe tener los siguientes parámetros:
+
+- \_id
+- created_at
+- id
+- id_str
+- text
+- source
+- user
+- geo
+- entities
+- retweeted_status
+- lang
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -34,7 +48,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Si se va a realizar con electron habrá que hacerlo de la siguiente manera con electron packager`npx electron-packager . Montwee --all `
+Si se va a realizar con electron habrá que hacerlo de la siguiente manera con electron packager`npx electron-packager . Montwee --platform=win32 --arch=x64 `
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests

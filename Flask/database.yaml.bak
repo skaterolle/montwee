@@ -1,2 +1,0 @@
-#uri: 'mongodb://localhost:27017/Twitter'
-uri: 'mongodb+srv://Skaterolle:Melodi16@skaterolle.yn03p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
