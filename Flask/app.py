@@ -1,6 +1,7 @@
 from asyncio.windows_events import NULL
 from datetime import datetime
 import json
+import certifi
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -10,6 +11,8 @@ import yaml
 app = Flask(__name__)
 config = yaml.safe_load(open('database.yaml'))
 client = MongoClient(config['uri'])
+# client = MongoClient(config['uri'], tlsCAFile=certifi.where()) # Solo para la universidad
+
 # db = client.lin_flask
 db = client['Twitter']
 CORS(app)
