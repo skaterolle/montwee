@@ -1,9 +1,11 @@
-<p class="inline margin_n">Colección en la que se va a realizar la consulta:</p>
-<Select id="selecciona">
-    <ng-container *ngFor="let opt of collections; ">
-        <option value="{{opt}}">{{opt}}</option>
-    </ng-container>
-</Select>
+<div class="margin_mx">
+    <p class="inline ">Colección en la que se va a realizar la consulta:</p>
+    <Select id="selecciona">
+        <ng-container *ngFor="let opt of collections; ">
+            <option value="{{opt}}">{{opt}}</option>
+        </ng-container>
+    </Select>
+</div>
 <form class="flex">
     <div class="flex_son">
         <div class="texto margin_mx form-group">
@@ -78,16 +80,16 @@
     <button type="button" class="btn btn-success margin_xx" (click)="find()">Buscar</button>
 </form>
 
-<div class="Nueva_Collection" *ngIf="tweets">
+<div class="Nueva_Collection margin_n" *ngIf="tweets">
     Nombre de la nueva collección:
     <input id="nueva" type="text">
-    <button class="btn btn-danger" (click)="Guardar_Colleccion()">Guardar</button>
+    <button class="btn btn-danger margin_n" (click)="Guardar_Colleccion()">Guardar</button>
 </div>
-<div *ngIf="tweets">
-    <p class="inline bold">Documentos Totales: </p>
+<div *ngIf="tweets" class="margin_n">
+    <p class="inline bold margin_mx">Documentos Totales: </p>
     <p class="inline">{{total}} </p>
 </div>
-<div class="card" *ngFor="let tweet of tweets | slice:0:20; let i=index">
+<div class="card margin_mx" *ngFor="let tweet of tweets | slice:0:20; let i=index">
     <div class="card-body ">
         <div class="flex">
             <img class="rounded float_left margin_xx" src="{{tweet.user.profile_image_url}}"

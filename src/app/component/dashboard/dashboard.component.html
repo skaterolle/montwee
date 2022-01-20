@@ -1,4 +1,4 @@
-<div class="flex">
+<div class="flex margin_n">
     <div class="flex_son">
         <button class="btn btn-success" (click)="reload()">Reload</button>
     </div>
@@ -13,7 +13,7 @@
 </div>
 
 <div class="flex contenido">
-    <div class="card fechas flex_son">
+    <div class="card fechas flex_son margin_mx">
         <div class="card-body">
             <p class="inline bold">Decha de inicio: </p>
             <p class="inline ">{{dates[0].first_date}} </p>
@@ -22,20 +22,20 @@
             <p class="inline">{{dates[0].last_date}} </p>
         </div>
     </div>
-    <div class="card flex_son documentos">
+    <div class="card flex_son documentos margin_mx">
         <div class="card-body">
             <p class="inline bold">Total de Documentos: </p>
             <p class="inline">{{docs}} </p>
         </div>
     </div>
-    <div class="card flex_son verificados">
+    <div class="card flex_son verificados margin_mx">
         <div class="card-body">
             <p class="inline bold">Total de Verificados: </p>
             <p class="inline">{{verificados[0].suma}} </p>
         </div>
     </div>
     <div class="break"></div>
-    <div class="card flex_son_2 mostrt">
+    <div class="card flex_son_2 mostrt margin_mx">
         <div class="card-body">
             <h4>Tweet Más RT: {{mostrt[0].suma}} veces </h4>
             <div class="flex">
@@ -48,7 +48,7 @@
             <p class="card-text">{{mostrt[0].texto}}</p>
         </div>
     </div>
-    <div class="card flex_son_2 morert">
+    <div class="card flex_son_2 morert margin_mx">
         <div class="card-body">
             <h4 (click)="toggleRT()" class="pointer text-align">5 Personas que más han retweeteado:</h4>
             <div id="LabelRT" class="hidden">
@@ -66,7 +66,7 @@
         </div>
     </div>
     <div class="break"></div>
-    <div class="card flex_son hashtags">
+    <div class="card flex_son hashtags margin_mx">
         <div class="card-body">
             <ng-container *ngFor="let hash of hashtags">
                 <div>
@@ -76,7 +76,7 @@
             </ng-container>
         </div>
     </div>
-    <div class="card flex_son_2 mencionados">
+    <div class="card flex_son_2 mencionados margin_mx">
         <div class="card-body">
             <ng-container *ngFor="let use of mencionados">
                 <div>
@@ -88,7 +88,7 @@
         </div>
     </div>
     <div class="break"></div>
-    <div class="card flex_son_2 urls">
+    <div class="card flex_son_2 urls margin_mx">
         <div class="card-body">
             <ng-container *ngFor="let mencionado of urls;">
                 <div>
@@ -98,7 +98,7 @@
             </ng-container>
         </div>
     </div>
-    <div class="card flex_son idiomas">
+    <div class="card flex_son idiomas margin_mx">
         <div class="card-body">
             <h4 class="pointer text-align" (click)="toggleLang()">5 Idiomas más usados:</h4>
             <div id="LabelLang" class="hidden">

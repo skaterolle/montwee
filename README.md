@@ -19,6 +19,7 @@ Las dependencias necesarias para hacer funcionar el servidor de flask serán las
 - pymongo
 - pyyaml
 - dnspython
+- certifi
 
 # MongoDB
 
